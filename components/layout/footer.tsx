@@ -87,19 +87,19 @@ export default function Footer() {
               <span className="absolute -bottom-1 left-0 w-8 h-px bg-red-600"></span>
             </h3>
             <address className="not-italic text-gray-400 text-sm space-y-3">
-              <p>〒123-4567</p>
-              <p>東京都渋谷区○○町1-2-3</p>
+              <p>〒157-0072</p>
+              <p>東京都世田谷区祖師谷6-19−20</p>
               <p>
                 TEL:{' '}
                 <a
                   href="tel:0312345678"
                   className="hover:text-white transition-colors"
                 >
-                  03-1234-5678
+                  03-6411-2959
                 </a>
               </p>
               <p>営業時間: 10:00〜19:00</p>
-              <p>定休日: 水曜日</p>
+              <p>定休日:土/日/祝）</p>
               <Link
                 href="/contact"
                 className="inline-flex items-center text-white mt-4 group"
