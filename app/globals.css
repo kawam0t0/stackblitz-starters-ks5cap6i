@@ -1,0 +1,708 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* アニメーション */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* ぼかし効果 */
+.blur-3xl {
+  --tw-blur: blur(64px);
+  filter: var(--tw-blur);
+}
+
+/* 色の定義 */
+.text-red-600 {
+  color: #d40000;
+}
+
+.text-red-400 {
+  color: #ff3333;
+}
+
+.bg-red-600 {
+  background-color: #d40000;
+}
+
+.bg-red-600\/80 {
+  background-color: rgba(212, 0, 0, 0.8);
+}
+
+.bg-red-600\/20 {
+  background-color: rgba(212, 0, 0, 0.2);
+}
+
+.bg-red-600\/10 {
+  background-color: rgba(212, 0, 0, 0.1);
+}
+
+.bg-red-600\/5 {
+  background-color: rgba(212, 0, 0, 0.05);
+}
+
+.from-red-600\/20 {
+  --tw-gradient-from: rgba(212, 0, 0, 0.2);
+}
+
+.from-red-600\/10 {
+  --tw-gradient-from: rgba(212, 0, 0, 0.1);
+}
+
+.from-red-600\/80 {
+  --tw-gradient-from: rgba(212, 0, 0, 0.8);
+}
+
+.via-red-600\/30 {
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(212, 0, 0, 0.3),
+    var(--tw-gradient-to);
+}
+
+.border-red-600 {
+  border-color: #d40000;
+}
+
+.hover\:border-red-600:hover {
+  border-color: #d40000;
+}
+
+.hover\:text-red-600:hover {
+  color: #d40000;
+}
+
+.hover\:text-red-400:hover {
+  color: #ff3333;
+}
+
+.hover\:bg-red-600:hover {
+  background-color: #d40000;
+}
+
+.group-hover\:text-red-600 {
+  color: #d40000;
+}
+
+/* グループホバー効果 */
+.group:hover .group-hover\:scale-x-100 {
+  transform: scaleX(1);
+}
+
+.group:hover .group-hover\:translate-x-1 {
+  transform: translateX(0.25rem);
+}
+
+.group:hover .group-hover\:translate-y-0 {
+  transform: translateY(0);
+}
+
+.group:hover .group-hover\:w-full {
+  width: 100%;
+}
+
+.group:hover .group-hover\:w-2 {
+  width: 0.5rem;
+}
+
+.group:hover .group-hover\:mr-2 {
+  margin-right: 0.5rem;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+.group:hover .group-hover\:text-black {
+  color: black;
+}
+
+.group:hover .group-hover\:border-red-600 {
+  border-color: #d40000;
+}
+
+.group:hover .group-hover\:font-medium {
+  font-weight: 500;
+}
+
+/* ホバー効果 */
+.hover\:scale-x-150:hover {
+  transform: scaleX(1.5);
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:-translate-y-2:hover {
+  transform: translateY(-0.5rem);
+}
+
+.hover\:-translate-y-1:hover {
+  transform: translateY(-0.25rem);
+}
+
+.hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgba(212, 0, 0, 0.05),
+    0 10px 10px -5px rgba(212, 0, 0, 0.04);
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgba(212, 0, 0, 0.05),
+    0 4px 6px -2px rgba(212, 0, 0, 0.04);
+}
+
+.hover\:shadow-red-600\/10:hover {
+  box-shadow: 0 0 15px 0 rgba(212, 0, 0, 0.1);
+}
+
+.hover\:shadow-red-600\/5:hover {
+  box-shadow: 0 0 15px 0 rgba(212, 0, 0, 0.05);
+}
+
+/* トランジション */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.duration-700 {
+  transition-duration: 700ms;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
+}
+
+/* 遅延 */
+.delay-75 {
+  transition-delay: 75ms;
+}
+
+/* 変形の原点 */
+.origin-left {
+  transform-origin: left;
+}
+
+/* ピア要素 */
+.peer:focus ~ .peer-focus\:text-red-600 {
+  color: #d40000;
+}
+
+.peer:focus ~ .peer-focus\:scale-75 {
+  transform: scale(0.75);
+}
+
+.peer:focus ~ .peer-focus\:-translate-y-3 {
+  transform: translateY(-0.75rem);
+}
+
+.peer:focus ~ .peer-focus\:border-red-600 {
+  border-color: #d40000;
+}
+
+.peer:placeholder-shown ~ .peer-placeholder-shown\:scale-100 {
+  transform: scale(1);
+}
+
+.peer:placeholder-shown ~ .peer-placeholder-shown\:translate-y-0 {
+  transform: translateY(0);
+}
+
+/* 新しいボタンスタイル */
+.premium-button-new {
+  position: relative;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  overflow: hidden;
+  display: inline-block;
+  box-shadow: 0 4px 15px -3px rgba(212, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+
+.premium-button-new:hover {
+  box-shadow: 0 10px 25px -5px rgba(212, 0, 0, 0.2),
+    0 10px 10px -5px rgba(212, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.premium-button-new:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px -3px rgba(212, 0, 0, 0.15);
+}
+
+.premium-button-outline {
+  position: relative;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  overflow: hidden;
+  display: inline-block;
+  box-shadow: 0 4px 15px -3px rgba(255, 255, 255, 0.05);
+  transition: all 0.5s ease;
+}
+
+.premium-button-outline:hover {
+  box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.1),
+    0 10px 10px -5px rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.premium-button-outline:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px -3px rgba(255, 255, 255, 0.07);
+}
+
+.luxury-button {
+  position: relative;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  overflow: hidden;
+  display: inline-block;
+  transition: all 0.5s ease;
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+
+.luxury-button:hover {
+  border-color: #d40000;
+  background-color: #d40000;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(212, 0, 0, 0.2);
+}
+
+.luxury-button:active {
+  transform: translateY(0);
+}
+
+.luxury-button-dark {
+  position: relative;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  overflow: hidden;
+  display: inline-block;
+  transition: all 0.5s ease;
+  background-color: black;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+
+.luxury-button-dark:hover {
+  border-color: #d40000;
+  background-color: rgba(212, 0, 0, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(212, 0, 0, 0.2);
+}
+
+.luxury-button-dark:active {
+  transform: translateY(0);
+}
+
+/* ナビゲーションアニメーション */
+@keyframes navItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-item {
+  animation: navItemFadeIn 0.5s ease forwards;
+  opacity: 0;
+}
+
+/* グラデーションテキスト */
+.text-gradient {
+  background: linear-gradient(to right, #ffffff, #d40000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ガラスモーフィズム効果 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-effect-dark {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 高級感のあるシャドウ */
+.luxury-shadow {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+/* 光沢効果 */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shine 6s infinite linear;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+/* 新しいグラデーション色の定義 */
+.bg-gradient-gold {
+  background: linear-gradient(to right, #c6a55a, #f0e6a9, #c6a55a);
+}
+
+.from-gold {
+  --tw-gradient-from: #c6a55a;
+}
+
+.to-gold-light {
+  --tw-gradient-to: #f0e6a9;
+}
+
+/* ページトランジション */
+@keyframes pageTransition {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: pageTransition 0.8s ease-out forwards;
+}
+
+/* 高級感のあるセクション区切り */
+.luxury-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  margin: 2rem 0;
+}
+
+/* 高級感のあるカード */
+.luxury-card {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.luxury-card:hover {
+  border-color: #d40000;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -20px rgba(212, 0, 0, 0.3);
+}
+
+/* 高級感のあるフォーム要素 */
+.luxury-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.75rem 0;
+  transition: all 0.3s ease;
+}
+
+.luxury-input:focus {
+  outline: none;
+  border-color: #d40000;
+}
+
+.luxury-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* 高級感のあるテキスト */
+.luxury-heading {
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.luxury-subheading {
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 高級感のあるナビゲーション */
+.luxury-nav-link {
+  position: relative;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+  margin: 0 1rem;
+  transition: all 0.3s ease;
+}
+
+.luxury-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #d40000;
+  transition: width 0.3s ease;
+}
+
+.luxury-nav-link:hover {
+  color: #d40000;
+}
+
+.luxury-nav-link:hover::after {
+  width: 100%;
+}
+
+.luxury-nav-link.active {
+  color: #d40000;
+}
+
+.luxury-nav-link.active::after {
+  width: 100%;
+  background-color: #d40000;
+}
+
+/* 高級感のあるセクション */
+.luxury-section {
+  position: relative;
+  padding: 6rem 0;
+  background-color: black;
+  overflow: hidden;
+}
+
+.luxury-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #d40000, transparent);
+  opacity: 0.3;
+}
+
+.luxury-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #d40000, transparent);
+  opacity: 0.3;
+}
+
+/* 高級感のあるリスト */
+.luxury-list-item {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.luxury-list-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #d40000;
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+}
+
+.luxury-list-item:hover {
+  color: white;
+  transform: translateX(0.25rem);
+}
+
+.luxury-list-item:hover::before {
+  background-color: white;
+  transform: rotate(135deg);
+}
+
+/* 高級感のあるテーブル */
+.luxury-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.luxury-table th {
+  background-color: rgba(212, 0, 0, 0.1);
+  color: white;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.luxury-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.luxury-table tr:hover td {
+  background-color: rgba(212, 0, 0, 0.05);
+  color: white;
+}
+
+/* 高級感のあるアコーディオン */
+.luxury-accordion {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.luxury-accordion:hover {
+  border-color: #d40000;
+}
+
+.luxury-accordion-header {
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.luxury-accordion-content {
+  padding: 0 1rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.luxury-accordion.active .luxury-accordion-content {
+  padding: 1rem;
+  max-height: 500px;
+}
