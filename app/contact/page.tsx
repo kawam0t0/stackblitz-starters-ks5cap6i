@@ -1,77 +1,73 @@
-'use client';
+"use client"
 
-import type React from 'react';
-import { useState } from 'react';
-import { sendEmail } from '@/app/actions/email';
+import type React from "react"
+import { useState } from "react"
+import { sendEmail } from "@/app/actions/email"
+import Image from "next/image"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    carModel: '',
-    subject: '',
-    message: '',
-    service: '選択してください',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+    name: "",
+    email: "",
+    phone: "",
+    carModel: "",
+    subject: "",
+    message: "",
+    service: "選択してください",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitResult, setSubmitResult] = useState<{
-    success: boolean;
-    message: string;
-  } | null>(null);
+    success: boolean
+    message: string
+  } | null>(null)
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitResult(null);
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitResult(null)
 
     try {
       // サーバーアクションを呼び出してメール送信
-      const result = await sendEmail(formData);
-      setSubmitResult(result);
+      const result = await sendEmail(formData)
+      setSubmitResult(result)
 
       // 送信成功時にフォームをリセット
       if (result.success) {
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          carModel: '',
-          subject: '',
-          message: '',
-          service: '選択してください',
-        });
+          name: "",
+          email: "",
+          phone: "",
+          carModel: "",
+          subject: "",
+          message: "",
+          service: "選択してください",
+        })
       }
     } catch (error) {
       setSubmitResult({
         success: false,
-        message: 'エラーが発生しました。もう一度お試しください。',
-      });
-      console.error('送信エラー:', error);
+        message: "エラーが発生しました。もう一度お試しください。",
+      })
+      console.error("送信エラー:", error)
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-black text-white pt-24 page-transition">
       {/* ヘッダー画像 */}
       <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-black to-zinc-900"></div>
+        <Image src="/contact-hero.jpg" alt="Contact Us" fill className="object-cover opacity-40" priority />
+        <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-transparent to-zinc-900"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-light tracking-wider mb-4 luxury-heading">
-              CONTACT US
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-light tracking-wider mb-4 luxury-heading">CONTACT US</h1>
             <div className="w-16 h-px bg-red-600 mx-auto"></div>
           </div>
         </div>
@@ -81,13 +77,10 @@ export default function ContactPage() {
       <section className="py-20 bg-black luxury-section">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-light mb-6 luxury-heading">
-              GET IN TOUCH
-            </h2>
+            <h2 className="text-3xl font-light mb-6 luxury-heading">GET IN TOUCH</h2>
             <div className="w-16 h-px bg-red-600 mx-auto mb-6"></div>
             <p className="text-gray-400 luxury-subheading">
-              お問い合わせやご予約は、以下のフォームからお気軽にどうぞ。
-              専門スタッフが丁寧にご対応いたします。
+              お問い合わせやご予約は、以下のフォームからお気軽にどうぞ。 専門スタッフが丁寧にご対応いたします。
             </p>
           </div>
 
@@ -95,9 +88,7 @@ export default function ContactPage() {
             <div className="w-full md:w-1/3">
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-light mb-4 luxury-heading">
-                    ADDRESS
-                  </h3>
+                  <h3 className="text-xl font-light mb-4 luxury-heading">ADDRESS</h3>
                   <div className="w-12 h-px bg-red-600 mb-4"></div>
                   <p className="text-gray-400">
                     〒157-0072
@@ -106,23 +97,17 @@ export default function ContactPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-light mb-4 luxury-heading">
-                    PHONE
-                  </h3>
+                  <h3 className="text-xl font-light mb-4 luxury-heading">PHONE</h3>
                   <div className="w-12 h-px bg-red-600 mb-4"></div>
                   <p className="text-gray-400">03-6411-2959</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-light mb-4 luxury-heading">
-                    EMAIL
-                  </h3>
+                  <h3 className="text-xl font-light mb-4 luxury-heading">EMAIL</h3>
                   <div className="w-12 h-px bg-red-600 mb-4"></div>
                   <p className="text-gray-400">info@carcarejapan.com</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-light mb-4 luxury-heading">
-                    BUSINESS HOURS
-                  </h3>
+                  <h3 className="text-xl font-light mb-4 luxury-heading">BUSINESS HOURS</h3>
                   <div className="w-12 h-px bg-red-600 mb-4"></div>
                   <p className="text-gray-400">
                     10:00〜19:00
@@ -137,8 +122,8 @@ export default function ContactPage() {
                 <div
                   className={`p-4 mb-6 border ${
                     submitResult.success
-                      ? 'border-green-600 bg-green-600/10 text-green-500'
-                      : 'border-red-600 bg-red-600/10 text-red-500'
+                      ? "border-green-600 bg-green-600/10 text-green-500"
+                      : "border-red-600 bg-red-600/10 text-red-500"
                   }`}
                 >
                   {submitResult.message}
@@ -234,11 +219,7 @@ export default function ContactPage() {
                     required
                     disabled={isSubmitting}
                   >
-                    <option
-                      value="選択してください"
-                      disabled
-                      className="bg-zinc-900"
-                    >
+                    <option value="選択してください" disabled className="bg-zinc-900">
                       ご希望のサービス
                     </option>
                     <option value="プレミアム洗車" className="bg-zinc-900">
@@ -268,12 +249,7 @@ export default function ContactPage() {
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
                 </div>
@@ -316,13 +292,9 @@ export default function ContactPage() {
                   </label>
                 </div>
                 <div className="text-center">
-                  <button
-                    type="submit"
-                    className="premium-button-new group"
-                    disabled={isSubmitting}
-                  >
+                  <button type="submit" className="premium-button-new group" disabled={isSubmitting}>
                     <span className="relative z-10 uppercase tracking-wider text-sm font-light">
-                      {isSubmitting ? '送信中...' : '送信する'}
+                      {isSubmitting ? "送信中..." : "送信する"}
                     </span>
                     <span className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 transform origin-left transition-transform duration-500 ease-out group-hover:scale-x-0"></span>
                     <span className="absolute inset-0 bg-gradient-to-r from-white to-gray-200 transform scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100"></span>
@@ -340,45 +312,45 @@ export default function ContactPage() {
       <section className="py-20 bg-zinc-900 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-red-600/30 to-transparent"></div>
         <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-red-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 opacity-20">
+          <Image src="/images/contact-faq-bg.jpg" alt="FAQ Background" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/80 to-black/90"></div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-light mb-4 luxury-heading">
-              FREQUENTLY ASKED QUESTIONS
-            </h2>
+            <h2 className="text-3xl font-light mb-4 luxury-heading">FREQUENTLY ASKED QUESTIONS</h2>
             <div className="w-16 h-px bg-red-600 mx-auto mb-6"></div>
             <p className="text-gray-400 max-w-2xl mx-auto luxury-subheading">
-              お客様からよくいただくご質問をまとめました。
-              その他のご質問は、お気軽にお問い合わせください。
+              お客様からよくいただくご質問をまとめました。 その他のご質問は、お気軽にお問い合わせください。
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-6">
             {[
               {
-                question: '予約は必要ですか？',
+                question: "予約は必要ですか？",
                 answer:
-                  'はい、スムーズなサービス提供のため、事前のご予約をお願いしています。お電話またはお問い合わせフォームからご予約いただけます。',
+                  "はい、スムーズなサービス提供のため、事前のご予約をお願いしています。お電話またはお問い合わせフォームからご予約いただけます。",
               },
               {
-                question: '施工にはどのくらいの時間がかかりますか？',
+                question: "施工にはどのくらいの時間がかかりますか？",
                 answer:
-                  'サービス内容によって異なりますが、基本的な洗車は約1時間、コーティングは車種や状態によって4〜8時間程度かかります。詳細はお問い合わせください。',
+                  "サービス内容によって異なりますが、基本的な洗車は約1時間、コーティングは車種や状態によって4〜8時間程度かかります。詳細はお問い合わせください。",
               },
               {
-                question: 'コーティングの持続期間はどのくらいですか？',
+                question: "コーティングの持続期間はどのくらいですか？",
                 answer:
-                  'コーティングの種類によって異なります。ポリマーコーティングは3〜6ヶ月、ガラスコーティングは6ヶ月〜1年、セラミックコーティングは1〜3年程度持続します。',
+                  "コーティングの種類によって異なります。ポリマーコーティングは3〜6ヶ月、ガラスコーティングは6ヶ月〜1年、セラミックコーティングは1〜3年程度持続します。",
               },
               {
-                question: '施工後のメンテナンス方法を教えてください。',
+                question: "施工後のメンテナンス方法を教えてください。",
                 answer:
-                  'コーティング後は、中性洗剤での手洗いをおすすめします。また、定期的なメンテナンスを受けることで、より長く美しい状態を保つことができます。',
+                  "コーティング後は、中性洗剤での手洗いをおすすめします。また、定期的なメンテナンスを受けることで、より長く美しい状態を保つことができます。",
               },
               {
-                question: '料金の支払い方法は何がありますか？',
-                answer:
-                  '現金、クレジットカード（VISA、MasterCard、JCB、American Express）、銀行振込に対応しています。',
+                question: "料金の支払い方法は何がありますか？",
+                answer: "現金、クレジットカード（VISA、MasterCard、JCB、American Express）、銀行振込に対応しています。",
               },
             ].map((faq, index) => (
               <div
@@ -394,5 +366,5 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
-  );
+  )
 }
