@@ -6,6 +6,12 @@ export default function WashingPage() {
     <div className="min-h-screen bg-black text-white pt-24 page-transition">
       {/* ヘッダー画像 */}
       <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
+      <Image
+          src="/sleek-black-ceramic.png"
+          alt="Premium Washing"
+          fill
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-black to-zinc-900"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
