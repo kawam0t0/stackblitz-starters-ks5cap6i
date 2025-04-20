@@ -114,11 +114,24 @@ export default function CompanyPage() {
 
           <div className="flex flex-col md:flex-row gap-12">
             <div className="w-full md:w-1/2 h-[400px] bg-zinc-900 flex items-center justify-center border border-zinc-800 hover:border-red-600/30 transition-colors duration-300 relative overflow-hidden">
-              <Image src="/images/company-map.jpg" alt="Map" fill className="object-cover opacity-80" />
-              <div className="absolute inset-0 bg-black/30"></div>
-              <div className="text-center relative z-10">
-                <p className="text-gray-200 mb-4">Google Mapが表示されます</p>
-                <Link href="#" className="luxury-button">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.2276112798397!2d139.59856687619837!3d35.65119997259684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f4f3d4e1c8c1%3A0x9e8f4e3ffd6a3d5d!2z44CSMTU3LTAwNzIg5p2x5Lqs6YO95LiW55Sw6LC35Yy66aSo5biC6LC377yW5LiB55uu77yR77yZ4oiS77yS77yA!5e0!3m2!1sja!2sjp!4v1713701234567!5m2!1sja!2sjp"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="z-10"
+                title="Google Map - CAR CARE JAPAN"
+              ></iframe>
+              <div className="absolute bottom-4 right-4 z-20">
+                <Link
+                  href="https://maps.app.goo.gl/Yd9Yd9Yd9Yd9Yd9Yd9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="luxury-button bg-black/70 backdrop-blur-sm"
+                >
                   <span className="relative z-10">Google Mapで見る</span>
                 </Link>
               </div>
