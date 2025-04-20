@@ -127,7 +127,7 @@ export default function CompanyPage() {
               ></iframe>
               <div className="absolute bottom-4 right-4 z-20">
                 <Link
-                  href="https://maps.app.goo.gl/Yd9Yd9Yd9Yd9Yd9Yd9"
+                  href="https://maps.app.goo.gl/AFEnoqqqUDioibkE9"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="luxury-button bg-black/70 backdrop-blur-sm"
