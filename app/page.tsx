@@ -24,7 +24,7 @@ export default function Home() {
       >
         <div className="relative w-24 h-24">
           <Image
-            src="/red-cj-carcare.png"
+            src="/CCJlogo.png"
             alt="CAR CARE JAPAN"
             width={150}
             height={150}
