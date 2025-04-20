@@ -32,7 +32,6 @@ export default function CompanyPage() {
             <div className="w-full md:w-1/2 bg-gradient-to-br from-zinc-900 to-black aspect-[4/3] flex items-center justify-center relative overflow-hidden">
               <Image src="/gallery-2.png" alt="Our Story" fill className="object-cover opacity-70" />
               <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/70"></div>
-              <div className="text-red-600 text-5xl relative z-10">CAR CARE</div>
             </div>
             <div className="w-full md:w-1/2">
               <h3 className="text-2xl font-light mb-6 luxury-heading">OUR STORY</h3>
