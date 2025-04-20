@@ -39,7 +39,7 @@ export default function Header() {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center relative z-10 group">
           <Image
-            src="/red-cj-carcare.png"
+            src="/CCJlogo.png"
             alt="CAR CARE JAPAN"
             width={150}
             height={150}
