@@ -7,7 +7,7 @@ export default function ServicesPage() {
       {/* ヘッダー画像 */}
       <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
         <Image
-          src="/gleaming-black-sedan.png"
+          src="/gallery-4.png"
           alt="Our Services"
           fill
           className="object-cover"
@@ -43,7 +43,7 @@ export default function ServicesPage() {
               <div className="w-full md:w-1/2 relative">
                 <div className="aspect-[4/3] overflow-hidden">
                   <Image
-                    src="/luxury-car-detail.png"
+                    src="/sleek-black-ceramic.png"
                     alt="Premium Car Wash"
                     width={600}
                     height={450}
@@ -82,7 +82,7 @@ export default function ServicesPage() {
               <div className="w-full md:w-1/2 relative">
                 <div className="aspect-[4/3] overflow-hidden">
                   <Image
-                    src="/black-car-ceramic-coating.png"
+                    src="/gallery-6.png"
                     alt="Luxury Car Coating"
                     width={600}
                     height={450}
