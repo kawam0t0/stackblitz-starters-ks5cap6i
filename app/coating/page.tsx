@@ -78,8 +78,8 @@ export default function CoatingPage() {
                 <p className="text-gray-400">2～4日</p>
               </div>
               <p className="text-gray-400 mb-6">
-                プラチナコーティングの技はそのまま、溶剤の一部を変更し施工します。
-                上級のガラスコーティングを実感したいお客様に最適です。
+                プラチナコーティングの技はそのまま、<br />溶剤の一部を変更し施工します。<br />
+                上級のガラスコーティングを実感したい<br />お客様に最適です。
               </p>
               <Link href="/contact" className="luxury-button w-full flex justify-center">
                 <span className="relative z-10">お問い合わせ</span>
