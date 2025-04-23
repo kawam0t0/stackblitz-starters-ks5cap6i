@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="mb-8 md:mb-0">
             <Link href="/" className="inline-block">
               <Image
-                src="/red-cj-carcare.png"
+                src="/CCJlogo.png"
                 alt="CAR CARE JAPAN"
                 width={150}
                 height={150}
