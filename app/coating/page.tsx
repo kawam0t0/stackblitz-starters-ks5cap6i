@@ -6,7 +6,7 @@ export default function CoatingPage() {
     <div className="min-h-screen bg-black text-white pt-24 page-transition">
       {/* ヘッダー画像 */}
       <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
-        <Image src="/sleek-onyx-shine.png" alt="Premium Coating" fill className="object-cover" />
+        <Image src="/gallery-2.png" alt="Premium Coating" fill className="object-cover" />
         <div className="absolute inset-0 bg-black/70"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
