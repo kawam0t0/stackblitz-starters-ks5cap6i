@@ -5,8 +5,23 @@ import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronDown, ChevronUp } from "lucide-react"
 
+// 車種データの型定義
+type CarSizeClass = "Pクラス" | "Sクラス" | "Tクラス"
+type CarBrandData = {
+  [key in CarSizeClass]?: string[]
+}
+
+type CarData = {
+  imported: {
+    [brand: string]: CarBrandData
+  }
+  domestic: {
+    [brand: string]: CarBrandData
+  }
+}
+
 // 車種データ
-const carData = {
+const carData: CarData = {
   imported: {
     ポルシェ: {
       Pクラス: ["カイエン", "パナメーラ", "マカン"],
@@ -366,7 +381,9 @@ export default function SizeChartPage() {
                             </tr>
                           </thead>
                           <tbody>
-                            {Object.entries(carData[activeTab][brand]).map(([sizeClass, models]) => (
+                            {Object.entries(
+                              activeTab === "imported" ? carData.imported[brand] : carData.domestic[brand],
+                            ).map(([sizeClass, models]) => (
                               <tr key={sizeClass}>
                                 <td className="w-1/4 font-light">{sizeClass}</td>
                                 <td>{models.join("、 ")}</td>
