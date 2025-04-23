@@ -63,7 +63,9 @@ export default function Home() {
             className="text-xl md:text-2xl font-light max-w-3xl mx-auto mb-12 tracking-wide opacity-0 animate-fadeIn"
             style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}
           >
-            あなたの愛車に最高級のケアを。プロフェッショナルによる洗車・コーティングサービス
+            あなたの愛車に最高級のケアを。
+            <br/>
+            あなたの愛車のコンシェルジュ。
           </p>
           <div
             className="flex flex-col sm:flex-row gap-6 opacity-0 animate-fadeIn"

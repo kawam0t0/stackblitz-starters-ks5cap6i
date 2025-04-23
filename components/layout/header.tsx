@@ -25,6 +25,7 @@ export default function Header() {
     { name: "サービス", path: "/services" },
     { name: "手洗い洗車", path: "/washing" },
     { name: "コーティング", path: "/coating" },
+    { name: "ブログ", path: "https://carcare-japan.com/wash/", external: true },
     { name: "会社情報", path: "/company" },
     { name: "よくある質問", path: "/faq" },
     { name: "お問い合わせ", path: "/contact" },
@@ -39,7 +40,7 @@ export default function Header() {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center relative z-10 group">
           <Image
-            src="/red-cj-carcare.png"
+            src="/CCJlogo.png"
             alt="CAR CARE JAPAN"
             width={150}
             height={150}
@@ -74,21 +75,41 @@ export default function Header() {
           </button>
 
           <div className="w-full pt-10 md:pt-0 flex flex-col md:flex-row items-start md:items-center justify-center md:justify-end space-y-6 md:space-y-0 md:space-x-8">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.name}
-                href={item.path}
-                className={`text-white text-sm uppercase tracking-widest transition-all duration-300 relative group overflow-hidden ${
-                  pathname === item.path ? "text-white font-medium" : ""
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300">{item.name}</span>
-                <span className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-white to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-                <span className="absolute inset-0 bg-white/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
-              </Link>
-            ))}
+            {navItems.map((item, index) =>
+              item.external ? (
+                <a
+                  key={item.name}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white text-sm uppercase tracking-widest transition-all duration-300 relative group overflow-hidden"
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                    {item.name}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-white to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
+                  <span className="absolute inset-0 bg-white/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`text-white text-sm uppercase tracking-widest transition-all duration-300 relative group overflow-hidden ${
+                    pathname === item.path ? "text-white font-medium" : ""
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                    {item.name}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-white to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
+                  <span className="absolute inset-0 bg-white/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+                </Link>
+              ),
+            )}
           </div>
         </nav>
 

@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="mb-8 md:mb-0">
             <Link href="/" className="inline-block">
               <Image
-                src="/CCJlogo.png"
+                src="/red-cj-carcare.png"
                 alt="CAR CARE JAPAN"
                 width={150}
                 height={150}
@@ -21,7 +21,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-gray-400 text-sm max-w-xs">
-              最高級のカーケアサービスを提供する、カーケアジャパン。あなたの愛車に最高のケアを。
+              最高級のカーケアサービスを提供する、カーケアジャパン。あなたの愛車のコンシェルジュ。
             </p>
           </div>
         </div>
@@ -87,23 +87,17 @@ export default function Footer() {
               <span className="absolute -bottom-1 left-0 w-8 h-px bg-red-600"></span>
             </h3>
             <address className="not-italic text-gray-400 text-sm space-y-3">
-              <p>〒157-0072</p>
-              <p>東京都世田谷区祖師谷6-19−20</p>
+              <p>〒123-4567</p>
+              <p>東京都渋谷区○○町1-2-3</p>
               <p>
-                TEL:{' '}
-                <a
-                  href="tel:0312345678"
-                  className="hover:text-white transition-colors"
-                >
-                  03-6411-2959
+                TEL:{" "}
+                <a href="tel:0312345678" className="hover:text-white transition-colors">
+                  03-1234-5678
                 </a>
               </p>
               <p>営業時間: 10:00〜19:00</p>
-              <p>定休日:土/日/祝）</p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center text-white mt-4 group"
-              >
+              <p>定休日: 水曜日</p>
+              <Link href="/contact" className="inline-flex items-center text-white mt-4 group">
                 <span className="relative z-10 text-sm uppercase tracking-wider group-hover:text-red-600 transition-colors">
                   お問い合わせをする
                 </span>
@@ -114,12 +108,7 @@ export default function Footer() {
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
             </address>
@@ -127,31 +116,9 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} CAR CARE JAPAN. All Rights Reserved.
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link
-              href="/privacy-policy"
-              className="text-gray-500 hover:text-white transition-colors text-xs"
-            >
-              プライバシーポリシー
-            </Link>
-            <Link
-              href="/terms"
-              className="text-gray-500 hover:text-white transition-colors text-xs"
-            >
-              利用規約
-            </Link>
-            <Link
-              href="/sitemap"
-              className="text-gray-500 hover:text-white transition-colors text-xs"
-            >
-              サイトマップ
-            </Link>
-          </div>
+          <p className="text-gray-500 text-sm">© {new Date().getFullYear()} CAR CARE JAPAN. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
-  );
+  )
 }
