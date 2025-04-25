@@ -86,7 +86,8 @@ export default function CompanyPage() {
             <h2 className="text-3xl font-light mb-4 luxury-heading">ACCESS</h2>
             <div className="w-16 h-px bg-red-600 mx-auto mb-6"></div>
             <p className="text-gray-400 max-w-2xl mx-auto luxury-subheading">
-              カーケアジャパン本社へのアクセス情報です。 ご来店の際は、事前にご予約いただくことをおすすめします。
+              カーケアジャパン本社へのアクセス情報です。<br/>
+              ご来店の際は、事前にご予約いただくことをおすすめします。
             </p>
           </div>
 
