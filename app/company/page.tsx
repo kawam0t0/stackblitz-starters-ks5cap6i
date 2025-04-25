@@ -28,30 +28,6 @@ export default function CompanyPage() {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-12 items-center mb-20">
-            <div className="w-full md:w-1/2 bg-gradient-to-br from-zinc-900 to-black aspect-[4/3] flex items-center justify-center relative overflow-hidden">
-              <Image src="/gallery-2.png" alt="Our Story" fill className="object-cover opacity-70" />
-              <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/70"></div>
-            </div>
-            <div className="w-full md:w-1/2">
-              <h3 className="text-2xl font-light mb-6 luxury-heading">OUR STORY</h3>
-              <div className="w-12 h-px bg-red-600 mb-6"></div>
-              <p className="text-gray-400 mb-6">
-                カーケアジャパンは、2010年に創業者の岡本直也によって設立されました。
-                自動車整備士としての経験を持つ山田は、日本の自動車オーナーに最高級のカーケアサービスを提供したいという
-                情熱から、このビジネスを始めました。
-              </p>
-              <p className="text-gray-400 mb-6">
-                創業以来、私たちは常に最高の品質とサービスを追求し、多くのお客様から信頼を得てきました。
-                現在では、東京を中心に複数の店舗を展開し、多くの高級車オーナーから支持されています。
-              </p>
-              <p className="text-gray-400">
-                私たちの使命は、お客様の愛車を美しく保ち、長く乗り続けていただくことです。
-                そのために、最新の技術と最高級の素材を使用し、一台一台丁寧に施工しています。
-              </p>
-            </div>
-          </div>
-
           {/* 会社情報テーブル */}
           <div className="max-w-3xl mx-auto">
             <h3 className="text-2xl font-light mb-6 text-center luxury-heading">COMPANY INFORMATION</h3>
@@ -62,20 +38,19 @@ export default function CompanyPage() {
                 <div className="w-full md:w-2/3 p-4">株式会社CAR CARE JAPAN</div>
               </div>
               <div className="flex flex-col md:flex-row border-b border-zinc-800">
-                <div className="w-full md:w-1/3 p-4 bg-zinc-900/50 font-light">設立</div>
-                <div className="w-full md:w-2/3 p-4">2010年4月</div>
-              </div>
-              <div className="flex flex-col md:flex-row border-b border-zinc-800">
                 <div className="w-full md:w-1/3 p-4 bg-zinc-900/50 font-light">代表取締役</div>
                 <div className="w-full md:w-2/3 p-4">岡本　直也</div>
               </div>
               <div className="flex flex-col md:flex-row border-b border-zinc-800">
-                <div className="w-full md:w-1/3 p-4 bg-zinc-900/50 font-light">資本金</div>
-                <div className="w-full md:w-2/3 p-4">1,000万円</div>
-              </div>
-              <div className="flex flex-col md:flex-row border-b border-zinc-800">
                 <div className="w-full md:w-1/3 p-4 bg-zinc-900/50 font-light">所在地</div>
-                <div className="w-full md:w-2/3 p-4">〒157-0072 東京都世田谷区祖師谷6-19−20</div>
+                <div className="w-full md:w-2/3 p-4">■東京本社（Tokyo-Head-Office）
+                <br/>〒157-0072 東京都世田谷区祖師谷6-19-20
+                <br/><br/>■横濱ファクトリー（Yokohama-Factory）<br/>
+                〒223-0057 神奈川県横浜市港北区新羽町849
+                <br/><br/>■関西支社（Kansai-Office）<br/>
+                〒532-0021 大阪府大阪市淀川区田川北1-13-5
+                <br/><br/>■大阪ファクトリー（Kansai-Office）<br/>
+                〒581-0039 大阪府八尾市太田新町4-120</div>
               </div>
               <div className="flex flex-col md:flex-row border-b border-zinc-800">
                 <div className="w-full md:w-1/3 p-4 bg-zinc-900/50 font-light">電話番号</div>
@@ -83,7 +58,7 @@ export default function CompanyPage() {
               </div>
               <div className="flex flex-col md:flex-row border-b border-zinc-800">
                 <div className="w-full md:w-1/3 p-4 bg-zinc-900/50 font-light">営業時間</div>
-                <div className="w-full md:w-2/3 p-4">10:00〜19:00（定休日：土曜日/日曜日/祝日）</div>
+                <div className="w-full md:w-2/3 p-4">10:00〜17:00（定休日：土曜日/日曜日/祝日）</div>
               </div>
               <div className="flex flex-col md:flex-row">
                 <div className="w-full md:w-1/3 p-4 bg-zinc-900/50 font-light">事業内容</div>
@@ -91,8 +66,11 @@ export default function CompanyPage() {
                   <ul className="space-y-2">
                     <li className="luxury-list-item">自動車洗車・コーティングサービス</li>
                     <li className="luxury-list-item">自動車内装クリーニング</li>
-                    <li className="luxury-list-item">カーケア製品の販売</li>
-                    <li className="luxury-list-item">カーケアコンサルティング</li>
+                    <li className="luxury-list-item">車検</li>
+                    <li className="luxury-list-item">定期点検</li>
+                    <li className="luxury-list-item">一般整備</li>
+                    <li className="luxury-list-item">修理全般</li>
+                    <li className="luxury-list-item">新車・中古車販売</li>
                   </ul>
                 </div>
               </div>
@@ -149,7 +127,7 @@ export default function CompanyPage() {
               <h3 className="text-2xl font-light mt-8 mb-6 luxury-heading">BUSINESS HOURS</h3>
               <div className="w-12 h-px bg-red-600 mb-6"></div>
               <div className="space-y-4 text-gray-400">
-                <p>営業時間: 10:00〜19:00</p>
+                <p>営業時間: 10:00〜17:00</p>
                 <p>定休日: 土曜日/日曜日/祝日</p>
                 <p>※ 年末年始・GW・お盆期間は営業時間が変更になる場合があります</p>
               </div>
