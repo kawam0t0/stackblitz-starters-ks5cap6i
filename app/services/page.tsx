@@ -109,8 +109,12 @@ export default function ServicesPage() {
             <h2 className="text-3xl font-light mb-4 luxury-heading">PRICE LIST</h2>
             <div className="w-16 h-px bg-red-600 mx-auto mb-6"></div>
             <p className="text-gray-400 max-w-2xl mx-auto luxury-subheading">
-              お客様の愛車に最適なプランをご用意しています。
-              車種やサイズによって料金が異なりますので、詳細はお問い合わせください。
+              お客様の愛車に最適なプランをご用意しています。 車種やサイズによって料金が異なります。
+            </p>
+            <p className="text-gray-400 mt-4">
+              ※掲載している料金は会員様用です。
+              <br />
+              ※単発の洗車も行っております。価格についてはお問い合わせください。
             </p>
           </div>
 
@@ -119,61 +123,46 @@ export default function ServicesPage() {
             <div className="w-12 h-px bg-red-600 mx-auto mb-6"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-            {/* プラン1 */}
-            <div className="border border-zinc-800 p-8 transition-all duration-300 hover:border-red-600 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-600/10">
-              <h3 className="text-xl font-light mb-2 luxury-heading">STANDARD</h3>
-              <div className="w-12 h-px bg-red-600 mb-4"></div>
-              <p className="text-4xl font-light mb-6">
-                ¥15,000<span className="text-sm text-gray-400">〜</span>
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="luxury-list-item">手洗い洗車</li>
-                <li className="luxury-list-item">ホイールクリーニング</li>
-                <li className="luxury-list-item">ガラスクリーニング</li>
-                <li className="luxury-list-item">簡易コーティング（1ヶ月保証）</li>
-              </ul>
-              <Link href="/contact" className="luxury-button w-full flex justify-center">
-                <span className="relative z-10">予約する</span>
-              </Link>
-            </div>
-
-            {/* プラン2 */}
-            <div className="border border-red-600 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-600/20 relative bg-zinc-900/80">
-              <div className="absolute top-0 right-0 bg-red-600 text-white px-4 py-1 text-xs uppercase tracking-wider">
-                Popular
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+            {/* プラチナコーティング */}
+            <div className="luxury-card p-8 hover:border-red-600">
+              <div className="w-16 h-16 bg-red-600 text-white flex items-center justify-center mb-6">
+                <span className="text-xl font-light">01</span>
               </div>
-              <h3 className="text-xl font-light mb-2 luxury-heading">PREMIUM</h3>
-              <div className="w-12 h-px bg-red-600 mb-4"></div>
-              <p className="text-4xl font-light mb-6">
-                ¥30,000<span className="text-sm text-gray-400">〜</span>
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="luxury-list-item">手洗い洗車（ディテール）</li>
-                <li className="luxury-list-item">ホイール徹底クリーニング</li>
-                <li className="luxury-list-item">ガラスコーティング（6ヶ月保証）</li>
-                <li className="luxury-list-item">簡易内装クリーニング</li>
-              </ul>
-              <Link href="/contact" className="luxury-button w-full flex justify-center">
-                <span className="relative z-10">予約する</span>
+              <h3 className="text-xl font-light mb-4 luxury-heading">プラチナコーティング</h3>
+              <div className="w-12 h-px bg-red-600 mb-6"></div>
+              <p className="text-gray-400 mb-6">塗装面ダメージ(小キズ・シミ)研磨修復/高耐久性ガラスコート</p>
+              <div className="mb-6">
+                <h4 className="text-sm font-light mb-2">会員価格</h4>
+                <p className="text-gray-400 mb-2">T 140,000円　S 160,000円　P 180,000円</p>
+                <h4 className="text-sm font-light mb-2">一般価格</h4>
+                <p className="text-gray-400 mb-2">T 160,000円　S 180,000円　P 200,000円</p>
+                <h4 className="text-sm font-light mb-2">施工時間</h4>
+                <p className="text-gray-400">2～4日</p>
+              </div>
+              <Link href="/coating" className="luxury-button w-full flex justify-center">
+                <span className="relative z-10">詳細を見る</span>
               </Link>
             </div>
 
-            {/* プラン3 */}
-            <div className="border border-zinc-800 p-8 transition-all duration-300 hover:border-red-600 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-600/10">
-              <h3 className="text-xl font-light mb-2 luxury-heading">LUXURY</h3>
-              <div className="w-12 h-px bg-red-600 mb-4"></div>
-              <p className="text-4xl font-light mb-6">
-                ¥50,000<span className="text-sm text-gray-400">〜</span>
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="luxury-list-item">フルディテーリング</li>
-                <li className="luxury-list-item">セラミックコーティング（1年保証）</li>
-                <li className="luxury-list-item">フル内装クリーニング</li>
-                <li className="luxury-list-item">エンジンルームクリーニング</li>
-              </ul>
-              <Link href="/contact" className="luxury-button w-full flex justify-center">
-                <span className="relative z-10">予約する</span>
+            {/* プレミアムコーティング */}
+            <div className="luxury-card p-8 border-red-600">
+              <div className="w-16 h-16 bg-red-600 text-white flex items-center justify-center mb-6">
+                <span className="text-xl font-light">02</span>
+              </div>
+              <h3 className="text-xl font-light mb-4 luxury-heading">プレミアムコーティング</h3>
+              <div className="w-12 h-px bg-red-600 mb-6"></div>
+              <p className="text-gray-400 mb-6">塗装 研磨復元/高保護性ガラスコート</p>
+              <div className="mb-6">
+                <h4 className="text-sm font-light mb-2">会員価格</h4>
+                <p className="text-gray-400 mb-2">T 90,000円　S 110,000円　P 130,000円</p>
+                <h4 className="text-sm font-light mb-2">一般価格</h4>
+                <p className="text-gray-400 mb-2">T 100,000円　S 120,000円　P 140,000円</p>
+                <h4 className="text-sm font-light mb-2">施工時間</h4>
+                <p className="text-gray-400">2～4日</p>
+              </div>
+              <Link href="/coating" className="luxury-button w-full flex justify-center">
+                <span className="relative z-10">詳細を見る</span>
               </Link>
             </div>
           </div>
@@ -183,67 +172,127 @@ export default function ServicesPage() {
             <div className="w-12 h-px bg-red-600 mx-auto mb-6"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* コンパクト */}
-            <div className="border border-zinc-800 p-8 transition-all duration-300 hover:border-red-600 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-600/10">
-              <h3 className="text-xl font-light mb-2 luxury-heading">COMPACT</h3>
-              <div className="w-12 h-px bg-red-600 mb-4"></div>
-              <p className="text-sm text-gray-400 mb-4">コンパクトカー・軽自動車</p>
-              <p className="text-4xl font-light mb-6">
-                ¥6,000<span className="text-sm text-gray-400">〜</span>
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="luxury-list-item">外装手洗い洗車</li>
-                <li className="luxury-list-item">ホイールクリーニング</li>
-                <li className="luxury-list-item">ガラスクリーニング</li>
-                <li className="luxury-list-item">簡易内装清掃</li>
-              </ul>
-              <Link href="/contact" className="luxury-button w-full flex justify-center">
-                <span className="relative z-10">予約する</span>
-              </Link>
-            </div>
+          <div className="max-w-4xl mx-auto mb-16">
+            <h3 className="text-2xl font-light mb-6 text-center luxury-heading">プレミアムプラン</h3>
+            <div className="w-16 h-px bg-red-600 mx-auto mb-6"></div>
+            <p className="text-center text-gray-400 mb-8">
+              ワックス洗車 or コーティング用メンテナンス洗車（艶出し撥水仕上げ）
+            </p>
 
-            {/* セダン・ミドルサイズ */}
-            <div className="border border-red-600 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-600/20 relative bg-zinc-900/80">
-              <div className="absolute top-0 right-0 bg-red-600 text-white px-4 py-1 text-xs uppercase tracking-wider">
-                Popular
+            <div className="overflow-x-auto">
+              <table className="w-full luxury-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>月2回</th>
+                    <th>月3回</th>
+                    <th>月4回</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Pクラス（税込）</td>
+                    <td>20,000円</td>
+                    <td>28,500円</td>
+                    <td>36,000円</td>
+                  </tr>
+                  <tr>
+                    <td>Sクラス（税込）</td>
+                    <td>18,000円</td>
+                    <td>25,500円</td>
+                    <td>33,000円</td>
+                  </tr>
+                  <tr>
+                    <td>Tクラス（税込）</td>
+                    <td>16,000円</td>
+                    <td>22,500円</td>
+                    <td>29,000円</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="max-w-4xl mx-auto mb-16">
+            <h3 className="text-2xl font-light mb-6 text-center luxury-heading">ロイヤルプラン</h3>
+            <div className="w-16 h-px bg-red-600 mx-auto mb-6"></div>
+            <p className="text-center text-gray-400 mb-8">
+              手洗い洗車 グロスコート（ポリマーコート仕上げ） ＋ ルームクリーニング
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full luxury-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>月1回</th>
+                    <th>月2回</th>
+                    <th>月3回</th>
+                    <th>月4回</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Pクラス（税込）</td>
+                    <td>29,000円</td>
+                    <td>52,500円</td>
+                    <td>69,300円</td>
+                    <td>84,000円</td>
+                  </tr>
+                  <tr>
+                    <td>Sクラス（税込）</td>
+                    <td>26,000円</td>
+                    <td>47,500円</td>
+                    <td>62,700円</td>
+                    <td>76,000円</td>
+                  </tr>
+                  <tr>
+                    <td>Tクラス（税込）</td>
+                    <td>23,000円</td>
+                    <td>42,500円</td>
+                    <td>56,100円</td>
+                    <td>68,000円</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* 車種サイズ説明 */}
+          <div className="max-w-3xl mx-auto mt-20">
+            <h3 className="text-2xl font-light mb-6 text-center luxury-heading">車種サイズについて</h3>
+            <div className="w-16 h-px bg-red-600 mx-auto mb-6"></div>
+            <p className="text-center text-gray-400 mb-8">料金表に記載のT、S、Pは車種のサイズを表しています。</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="border border-zinc-800 p-6 transition-all duration-300 hover:border-red-600">
+                <h3 className="text-xl font-light mb-2 luxury-heading">T</h3>
+                <div className="w-8 h-px bg-red-600 mx-auto mb-4"></div>
+                <p className="text-gray-400">軽自動車、コンパクトカーなど</p>
               </div>
-              <h3 className="text-xl font-light mb-2 luxury-heading">SEDAN</h3>
-              <div className="w-12 h-px bg-red-600 mb-4"></div>
-              <p className="text-sm text-gray-400 mb-4">セダン・ミドルサイズSUV</p>
-              <p className="text-4xl font-light mb-6">
-                ¥8,000<span className="text-sm text-gray-400">〜</span>
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="luxury-list-item">外装手洗い洗車</li>
-                <li className="luxury-list-item">ホイールクリーニング</li>
-                <li className="luxury-list-item">ガラスクリーニング</li>
-                <li className="luxury-list-item">内装バキューム清掃</li>
-                <li className="luxury-list-item">ダッシュボード清掃</li>
-              </ul>
-              <Link href="/contact" className="luxury-button w-full flex justify-center">
-                <span className="relative z-10">予約する</span>
-              </Link>
+
+              <div className="border border-zinc-800 p-6 transition-all duration-300 hover:border-red-600">
+                <h3 className="text-xl font-light mb-2 luxury-heading">S</h3>
+                <div className="w-8 h-px bg-red-600 mx-auto mb-4"></div>
+                <p className="text-gray-400">セダン、ミドルサイズSUVなど</p>
+              </div>
+
+              <div className="border border-zinc-800 p-6 transition-all duration-300 hover:border-red-600">
+                <h3 className="text-xl font-light mb-2 luxury-heading">P</h3>
+                <div className="w-8 h-px bg-red-600 mx-auto mb-4"></div>
+                <p className="text-gray-400">大型SUV、ミニバン、高級車など</p>
+              </div>
             </div>
 
-            {/* ラージサイズ */}
-            <div className="border border-zinc-800 p-8 transition-all duration-300 hover:border-red-600 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-600/10">
-              <h3 className="text-xl font-light mb-2 luxury-heading">LARGE</h3>
-              <div className="w-12 h-px bg-red-600 mb-4"></div>
-              <p className="text-sm text-gray-400 mb-4">大型SUV・ミニバン</p>
-              <p className="text-4xl font-light mb-6">
-                ¥10,000<span className="text-sm text-gray-400">〜</span>
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="luxury-list-item">外装手洗い洗車</li>
-                <li className="luxury-list-item">ホイールクリーニング</li>
-                <li className="luxury-list-item">ガラスクリーニング</li>
-                <li className="luxury-list-item">内装フル清掃</li>
-                <li className="luxury-list-item">シート清掃</li>
-                <li className="luxury-list-item">トランク清掃</li>
-              </ul>
-              <Link href="/contact" className="luxury-button w-full flex justify-center">
-                <span className="relative z-10">予約する</span>
+            <p className="text-gray-400 text-sm mb-8 text-center">
+              ※ 表示価格はすべて税込み価格です。
+              <br />※ 車種や車の状態によって追加料金が発生する場合があります。
+            </p>
+
+            {/* 車種サイズ表へのリンク */}
+            <div className="text-center">
+              <Link href="/coating/size-chart" className="luxury-button inline-flex items-center">
+                <span className="relative z-10">車種別サイズ表を見る</span>
               </Link>
             </div>
           </div>
