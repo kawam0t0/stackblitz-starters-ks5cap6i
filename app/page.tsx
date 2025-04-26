@@ -22,7 +22,7 @@ export default function Home() {
       >
         <div className="relative w-24 h-24">
           <Image
-            src="/red-cj-carcare.png"
+            src="/CCJlogo.png"
             alt="CAR CARE JAPAN"
             width={150}
             height={150}
@@ -110,7 +110,7 @@ export default function Home() {
             <p className="text-gray-400 max-w-2xl mx-auto">最高級の素材と技術で、あなたの愛車を美しく保ちます。</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               {
                 title: "プレミアム洗車",

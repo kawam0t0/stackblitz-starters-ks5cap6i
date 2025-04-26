@@ -69,7 +69,7 @@ export default function ServicesPage() {
               <div className="w-full md:w-1/2 relative">
                 <div className="aspect-[4/3] overflow-hidden">
                   <Image
-                    src="/black-car-ceramic-coating.png"
+                    src="/luxury-car-ceramic-coating.png"
                     alt="Luxury Car Coating"
                     width={600}
                     height={450}
