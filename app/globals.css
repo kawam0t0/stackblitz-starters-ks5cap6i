@@ -9,11 +9,10 @@ html {
 body {
   background-color: black;
   color: white;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 /* アニメーション */
 @keyframes fadeIn {
@@ -96,8 +95,7 @@ body {
 }
 
 .via-red-600\/30 {
-  --tw-gradient-stops: var(--tw-gradient-from), rgba(212, 0, 0, 0.3),
-    var(--tw-gradient-to);
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(212, 0, 0, 0.3), var(--tw-gradient-to);
 }
 
 .border-red-600 {
@@ -187,13 +185,15 @@ body {
 }
 
 .hover\:shadow-xl:hover {
-  box-shadow: 0 20px 25px -5px rgba(212, 0, 0, 0.05),
-    0 10px 10px -5px rgba(212, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(212, 0, 0, 0.05), 0 10px 10px -5px rgba(212, 0, 0, 0.04);
 }
 
 .hover\:shadow-lg:hover {
-  box-shadow: 0 10px 15px -3px rgba(212, 0, 0, 0.05),
-    0 4px 6px -2px rgba(212, 0, 0, 0.04);
+  box-shadow: 0 0 0 0.05, 0 10px 10px -5px rgba(212, 0, 0, 0.04);
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgba(212, 0, 0, 0.05), 0 4px 6px -2px rgba(212, 0, 0, 0.04);
 }
 
 .hover\:shadow-red-600\/10:hover {
@@ -290,8 +290,7 @@ body {
 }
 
 .premium-button-new:hover {
-  box-shadow: 0 10px 25px -5px rgba(212, 0, 0, 0.2),
-    0 10px 10px -5px rgba(212, 0, 0, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(212, 0, 0, 0.2), 0 10px 10px -5px rgba(212, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
@@ -313,8 +312,7 @@ body {
 }
 
 .premium-button-outline:hover {
-  box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.1),
-    0 10px 10px -5px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.1), 0 10px 10px -5px rgba(255, 255, 255, 0.05);
   transform: translateY(-2px);
 }
 
@@ -380,6 +378,38 @@ body {
   transform: translateY(0);
 }
 
+/* 既存のCSSに追加 - LINEボタン用のスタイル */
+.line-button {
+  position: relative;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  background-color: #06c755;
+  color: white;
+  transition: all 0.5s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+
+.line-button:hover {
+  background-color: #04a348;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(6, 199, 85, 0.3);
+}
+
+.line-button:active {
+  transform: translateY(0);
+}
+
+.line-button svg {
+  margin-right: 0.5rem;
+}
+
 /* ナビゲーションアニメーション */
 @keyframes navItemFadeIn {
   from {
@@ -423,9 +453,8 @@ body {
 
 /* 高級感のあるシャドウ */
 .luxury-shadow {
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1),
-    0 4px 6px -4px rgba(0, 0, 0, 0.05),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05), 0 0 0 1px
+    rgba(255, 255, 255, 0.05) inset;
 }
 
 /* 光沢効果 */
@@ -435,7 +464,7 @@ body {
 }
 
 .shine-effect::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -492,12 +521,7 @@ body {
 /* 高級感のあるセクション区切り */
 .luxury-divider {
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
   margin: 2rem 0;
 }
 
@@ -561,7 +585,7 @@ body {
 }
 
 .luxury-nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -597,7 +621,7 @@ body {
 }
 
 .luxury-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -608,7 +632,7 @@ body {
 }
 
 .luxury-section::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -627,7 +651,7 @@ body {
 }
 
 .luxury-list-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0.5rem;
@@ -706,4 +730,88 @@ body {
 .luxury-accordion.active .luxury-accordion-content {
   padding: 1rem;
   max-height: 500px;
+}
+
+/* ブログ記事のスタイル */
+.prose {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.prose h2 {
+  color: white;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.875rem;
+  line-height: 1.2;
+}
+
+.prose h3 {
+  color: white;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.prose p {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+.prose ul {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.prose ol {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose a {
+  color: #d40000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.prose a:hover {
+  color: #ff3333;
+  text-decoration: underline;
+}
+
+.prose strong {
+  color: white;
+  font-weight: 600;
+}
+
+.prose blockquote {
+  border-left: 3px solid #d40000;
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

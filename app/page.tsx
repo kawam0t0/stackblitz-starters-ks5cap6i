@@ -243,6 +243,41 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* LINE誘導セクション */}
+      <section className="py-24 bg-black relative overflow-hidden">
+        {/* 装飾的な要素 */}
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-red-600/30 to-transparent"></div>
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-red-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-red-600/5 rounded-full blur-3xl"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center gap-12 p-8 border border-zinc-800 hover:border-red-600/50 transition-all duration-500 bg-zinc-900/30 backdrop-blur-sm">
+              <div className="w-full md:w-2/3 text-center md:text-left">
+                <h2 className="text-3xl md:text-4xl font-light tracking-wider mb-4 luxury-heading">OFFICIAL LINE</h2>
+                <div className="w-16 h-px bg-red-600 mx-auto md:mx-0 mb-6"></div>
+                <p className="text-gray-400 mb-8">
+                  公式LINEアカウントでは、最新のキャンペーン情報やお得な特典をいち早くお届けします。
+                  また、LINEからのご予約・お問い合わせも承っております。
+                </p>
+                <a
+                  href="https://lin.ee/bmvruKl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="premium-button-new group inline-flex items-center"
+                >
+                  <span className="relative z-10 uppercase tracking-wider text-sm font-light">友だち追加</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-[#06C755] to-[#04A348] transform origin-left transition-transform duration-500 ease-out group-hover:scale-x-0"></span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-white to-gray-200 transform scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                  <span className="absolute top-0 right-0 w-8 h-8 bg-white/10 rounded-full blur-xl transform scale-0 group-hover:scale-100 transition-transform duration-700"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
