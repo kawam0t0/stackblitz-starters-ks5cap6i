@@ -258,8 +258,8 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl font-light tracking-wider mb-4 luxury-heading">OFFICIAL LINE</h2>
                 <div className="w-16 h-px bg-red-600 mx-auto md:mx-0 mb-6"></div>
                 <p className="text-gray-400 mb-8">
-                  公式LINEアカウントでは、最新のキャンペーン情報やお得な特典をいち早くお届けします。
-                  また、LINEからのご予約・お問い合わせも承っております。
+                  公式LINEアカウントでもご予約・お問い合わせも承っております。<br/>
+                  お気軽にお問い合わせ下さい。
                 </p>
                 <a
                   href="https://lin.ee/bmvruKl"
