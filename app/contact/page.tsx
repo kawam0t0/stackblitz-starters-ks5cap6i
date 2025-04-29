@@ -228,11 +228,8 @@ export default function ContactPage() {
                     <option value="コーティング" className="bg-zinc-900">
                       コーティング
                     </option>
-                    <option value="インテリアケア" className="bg-zinc-900">
-                      インテリアケア
-                    </option>
                     <option value="その他" className="bg-zinc-900">
-                      その他
+                      その他問い合わせ
                     </option>
                   </select>
                   <label
@@ -253,25 +250,7 @@ export default function ContactPage() {
                     </svg>
                   </div>
                 </div>
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full bg-black/50 border-b border-zinc-700 px-4 py-3 focus:outline-none focus:border-red-600 transition-colors peer pt-6"
-                    placeholder=" "
-                    required
-                    disabled={isSubmitting}
-                  />
-                  <label
-                    htmlFor="subject"
-                    className="absolute text-sm text-gray-400 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-red-600"
-                  >
-                    件名
-                  </label>
-                </div>
+
                 <div className="relative">
                   <textarea
                     id="message"
@@ -304,64 +283,6 @@ export default function ContactPage() {
                 </div>
               </form>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-20 bg-zinc-900 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-red-600/30 to-transparent"></div>
-        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-red-600/5 rounded-full blur-3xl"></div>
-        <div className="absolute inset-0 opacity-20">
-          <Image src="/images/contact-faq-bg.jpg" alt="FAQ Background" fill className="object-cover" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/80 to-black/90"></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-light mb-4 luxury-heading">FREQUENTLY ASKED QUESTIONS</h2>
-            <div className="w-16 h-px bg-red-600 mx-auto mb-6"></div>
-            <p className="text-gray-400 max-w-2xl mx-auto luxury-subheading">
-              お客様からよくいただくご質問をまとめました。 その他のご質問は、お気軽にお問い合わせください。
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              {
-                question: "予約は必要ですか？",
-                answer:
-                  "はい、スムーズなサービス提供のため、事前のご予約をお願いしています。お電話またはお問い合わせフォームからご予約いただけます。",
-              },
-              {
-                question: "施工にはどのくらいの時間がかかりますか？",
-                answer:
-                  "サービス内容によって異なりますが、基本的な洗車は約1時間、コーティングは車種や状態によって4〜8時間程度かかります。詳細はお問い合わせください。",
-              },
-              {
-                question: "コーティングの持続期間はどのくらいですか？",
-                answer:
-                  "コーティングの種類によって異なります。ポリマーコーティングは3〜6ヶ月、ガラスコーティングは6ヶ月〜1年、セラミックコーティングは1〜3年程度持続します。",
-              },
-              {
-                question: "施工後のメンテナンス方法を教えてください。",
-                answer:
-                  "コーティング後は、中性洗剤での手洗いをおすすめします。また、定期的なメンテナンスを受けることで、より長く美しい状態を保つことができます。",
-              },
-              {
-                question: "料金の支払い方法は何がありますか？",
-                answer: "現金、クレジットカード（VISA、MasterCard、JCB、American Express）、銀行振込に対応しています。",
-              },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="border border-zinc-800 p-6 transition-all duration-300 hover:border-red-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-red-600/10"
-              >
-                <h3 className="text-xl font-light mb-4">{faq.question}</h3>
-                <div className="w-8 h-px bg-red-600 mb-4"></div>
-                <p className="text-gray-400">{faq.answer}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

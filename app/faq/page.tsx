@@ -6,7 +6,7 @@ export default function FAQPage() {
     <div className="min-h-screen bg-black text-white pt-24 page-transition">
       {/* ヘッダー画像 */}
       <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
-        <Image src="/gallery-5.png" alt="FAQ" fill className="object-cover opacity-40" priority />
+        <Image src="/images/faq-header.jpg" alt="FAQ" fill className="object-cover opacity-40" priority />
         <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-transparent to-zinc-900"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
@@ -48,134 +48,76 @@ export default function FAQPage() {
 
             {/* FAQ リスト */}
             <div className="space-y-12">
-              {/* カテゴリー1 */}
+              {/* 出張洗車についてのご質問 */}
               <div>
-                <h3 className="text-2xl font-light mb-6 luxury-heading">サービスについて</h3>
+                <h3 className="text-2xl font-light mb-6 luxury-heading">出張洗車についてのご質問</h3>
                 <div className="w-12 h-px bg-red-600 mb-6"></div>
                 <div className="space-y-6">
                   {[
                     {
-                      question: "どのようなサービスを提供していますか？",
+                      question: "頼みたい時にすぐ洗車に来てくれますか？",
                       answer:
-                        "カーケアジャパンでは、プレミアム洗車、各種コーティング（ガラス、セラミック、ポリマー）、インテリアクリーニング、ポリッシング、ヘッドライトの黄ばみ除去など、幅広いカーケアサービスを提供しています。",
+                        "弊社スタッフのスケジュールにより、即日ですと伺えない場合もございますが、できる限りお客様のご希望に沿ったスケジューリングで洗車をさせて頂いております。",
                     },
                     {
-                      question: "施工にはどのくらいの時間がかかりますか？",
-                      answer:
-                        "サービス内容によって異なります。基本的な洗車は約1時間、コーティングは車種や状態によって4〜8時間程度かかります。インテリアクリーニングは2〜4時間程度です。詳細はお問い合わせください。",
+                      question: "どこまで細かく洗浄してくれますか？",
+                      answer: "キャリパーや給油口など細かなパーツまですべてきれいに洗車させていただきます。",
                     },
                     {
-                      question: "コーティングの持続期間はどのくらいですか？",
+                      question: "何時頃まで洗車の依頼ができますか？",
                       answer:
-                        "コーティングの種類によって異なります。ポリマーコーティングは3〜6ヶ月、ガラスコーティングは6ヶ月〜1年、セラミックコーティングは1〜3年程度持続します。ただし、使用状況やメンテナンス状態によって変わります。",
+                        "隅々まできれいに洗車するというポリシーから日没までのご依頼を承っております。（ライトをお持ちすることは可能ですので、ライトアップしても近隣にご迷惑の掛からない環境に限り日没後もご依頼をお受けすることは出来ます。）",
                     },
                     {
-                      question: "施工後のメンテナンス方法を教えてください。",
+                      question: "出張洗車可能なエリアはどこまでですか？",
                       answer:
-                        "コーティング後は、中性洗剤での手洗いをおすすめします。強い洗剤や自動洗車機の使用は避けてください。また、3〜6ヶ月ごとの定期的なメンテナンスを受けることで、より長く美しい状態を保つことができます。",
+                        "東京23区内・神奈川県・千葉県はお伺いさせていただきます。特に目黒区、世田谷、港区、渋谷区の皆様に多くご愛顧いただいています。また大阪府・兵庫県・京都府にも近日中に出張可能になる予定です。",
                     },
                     {
-                      question: "どのような車種に対応していますか？",
-                      answer:
-                        "国産車、輸入車を問わず、すべての車種に対応しています。セダン、SUV、スポーツカー、ミニバンなど、あらゆる車種のカーケアが可能です。",
+                      question: "雨の日は洗車ができますか？",
+                      answer: "屋根があって伺える場合は洗車にお伺いします。",
                     },
                     {
-                      question: "施工中は待つことができますか？",
+                      question: "出張洗車のスケジュールはどのように決めますか？",
                       answer:
-                        "はい、待合室をご用意しています。Wi-Fi、コーヒー、雑誌などをご利用いただけます。ただし、長時間の施工の場合は、一度お帰りいただくことをおすすめします。",
+                        "基本スケジュールは前月に翌月の出張洗車のスケジュールを仮決めさせていただいております。あとからスケジュールの変更も可能です。",
                     },
                     {
-                      question: "出張サービスはありますか？",
+                      question: "定期分の出張洗車ができなかったらどうなりますか？",
                       answer:
-                        "はい、一部のサービスについては出張施工も承っております。ただし、コーティングなどの専門的な施工は、最適な環境で行うため店舗での施工をおすすめしています。詳細はお問い合わせください。",
+                        "翌月に洗車を繰り越すことが出来ます。例えば2回定期で1回しか出張洗車できなかった場合は、翌月に3回出張洗車にお伺いします。",
                     },
                     {
-                      question: "施工前に準備することはありますか？",
-                      answer:
-                        "特別な準備は必要ありませんが、車内の貴重品や不要な荷物は事前に取り出しておくことをおすすめします。また、燃料は半分以上入れておくとスムーズです。",
-                    },
-                  ].map((faq, index) => (
-                    <div
-                      key={index}
-                      className="border border-zinc-800 p-6 transition-all duration-300 hover:border-red-600 hover:shadow-lg hover:shadow-red-600/10"
-                    >
-                      <h4 className="text-xl font-light mb-4">{faq.question}</h4>
-                      <div className="w-8 h-px bg-red-600 mb-4"></div>
-                      <p className="text-gray-400">{faq.answer}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* カテゴリー2 */}
-              <div>
-                <h3 className="text-2xl font-light mb-6 luxury-heading">料金について</h3>
-                <div className="w-12 h-px bg-red-600 mb-6"></div>
-                <div className="space-y-6">
-                  {[
-                    {
-                      question: "料金はどのように決まりますか？",
-                      answer:
-                        "料金は車種（サイズ）とサービス内容によって決まります。セダン、SUV、ミニバンなど、車のサイズによって基本料金が異なります。また、オプションサービスを追加することもできます。",
+                      question: "長期間家を空けるので洗車サービスの利用を休止することは出来ますか？",
+                      answer: "はい。ご契約を一時的にストップすることができます。",
                     },
                     {
-                      question: "料金の支払い方法は何がありますか？",
-                      answer:
-                        "現金、クレジットカード（VISA、MasterCard、JCB、American Express）、銀行振込に対応しています。法人のお客様には請求書払いも対応可能です。",
+                      question: "個人の車ですが法人契約できますか？",
+                      answer: "法人契約も承っております。",
                     },
                     {
-                      question: "分割払いは可能ですか？",
+                      question: "支払い方法は？",
                       answer:
-                        "クレジットカードでのお支払いの場合、カード会社の分割払いサービスをご利用いただけます。詳細はカード会社にお問い合わせください。",
+                        "基本は銀行引き落としでお願いさせていただいております。また、クレジットカードの定期決済もご利用頂けます。お伺いした際に当社のスタッフがご料金をいただくことはありません。",
                     },
                     {
-                      question: "定期的なメンテナンスプランはありますか？",
+                      question: "家を空けていても良いですか？",
                       answer:
-                        "はい、月額制のメンテナンスプランをご用意しています。月1回の洗車と3ヶ月ごとのメンテナンスコーティングがセットになったお得なプランです。詳細はお問い合わせください。",
+                        "はい、外出頂いて構いません。ただ、車内清掃をお望みの場合は基本的にご在宅頂いております。",
                     },
                     {
-                      question: "見積もりは無料ですか？",
+                      question: "水道、電気がありませんが洗車できますか？",
                       answer:
-                        "はい、見積もりは無料です。お電話、メール、または店舗にて車種とご希望のサービスをお伝えいただければ、お見積りをご提供いたします。",
-                    },
-                  ].map((faq, index) => (
-                    <div
-                      key={index}
-                      className="border border-zinc-800 p-6 transition-all duration-300 hover:border-red-600 hover:shadow-lg hover:shadow-red-600/10"
-                    >
-                      <h4 className="text-xl font-light mb-4">{faq.question}</h4>
-                      <div className="w-8 h-px bg-red-600 mb-4"></div>
-                      <p className="text-gray-400">{faq.answer}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* カテゴリー3 */}
-              <div>
-                <h3 className="text-2xl font-light mb-6 luxury-heading">予約・キャンセルについて</h3>
-                <div className="w-12 h-px bg-red-600 mb-6"></div>
-                <div className="space-y-6">
-                  {[
-                    {
-                      question: "予約は必要ですか？",
-                      answer:
-                        "はい、スムーズなサービス提供のため、事前のご予約をお願いしています。お電話またはお問い合わせフォームからご予約いただけます。",
+                        "はい可能です。水は弊社で用意しております。発電機を用意しておりますので電気がなくても洗車はできます。ただ、発電機を使用すると近隣の迷惑になる場合があるので車内清掃をお望みの場合は、電気をお貸しいただけると助かります。",
                     },
                     {
-                      question: "どのくらい前に予約すればいいですか？",
+                      question: "駐車場が狭いのですが洗車できますか？",
                       answer:
-                        "特に週末や祝日は混雑しますので、1週間前までのご予約をおすすめします。平日であれば2〜3日前でもご予約可能な場合があります。",
+                        "ひと一人が一周できる幅があれば洗車できます。（約50cm） 50cmのスペースが確保できない場合でも近くに移動できる場所があれば洗車できます。",
                     },
                     {
-                      question: "キャンセルポリシーを教えてください。",
-                      answer:
-                        "予約日の24時間前までのキャンセルは無料です。24時間を切ってからのキャンセルの場合、キャンセル料として予約サービス料金の30%をいただく場合があります。",
-                    },
-                    {
-                      question: "予約の変更は可能ですか？",
-                      answer:
-                        "はい、予約日の48時間前までであれば、空き状況に応じて予約の変更が可能です。お早めにご連絡ください。",
+                      question: "いつも同じ人が洗ってくれるんですか？",
+                      answer: "基本的に担当者制になっており、専属のスタッフが洗車させていただきます。",
                     },
                   ].map((faq, index) => (
                     <div
