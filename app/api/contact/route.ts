@@ -16,6 +16,25 @@ export async function POST(request: Request) {
     // リクエストボディからフォームデータを取得
     const formData: FormData = await request.json()
 
+    // 環境変数のデバッグ出力
+    console.log("環境変数チェック:")
+    console.log("GMAIL_USER:", process.env.GMAIL_USER || "未設定")
+    console.log("GMAIL_APP_PASSWORD:", process.env.GMAIL_APP_PASSWORD ? "設定済み" : "未設定")
+    console.log("GMAIL_RECIPIENT:", process.env.GMAIL_RECIPIENT || "未設定")
+
+    // 環境変数が設定されていない場合はエラーを返す
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      console.error("必要な環境変数が設定されていません")
+      return NextResponse.json(
+        {
+          success: false,
+          message: "サーバー設定エラー: メール送信に必要な設定が不足しています。管理者にお問い合わせください。",
+          debug: "環境変数 GMAIL_USER または GMAIL_APP_PASSWORD が設定されていません。",
+        },
+        { status: 500 },
+      )
+    }
+
     // メール本文を作成（管理者向け）
     const adminEmailBody = `
 新しいお問い合わせが届きました。
@@ -31,25 +50,44 @@ export async function POST(request: Request) {
 ${formData.message}
     `
 
-    // トランスポーターの設定部分を以下のように明示的に変更します
-    // Gmailを使用したトランスポーターの設定
+    // トランスポーターの設定を明示的に行う
+    console.log("トランスポーター設定開始...")
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
       secure: true, // SSL
       auth: {
         user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD, // Gmailのアプリパスワード
+        pass: process.env.GMAIL_APP_PASSWORD,
       },
+      debug: true, // デバッグモードを有効化
+      logger: true, // ロガーを有効化
     })
+
+    // トランスポーターの検証
+    console.log("トランスポーター検証中...")
+    try {
+      await transporter.verify()
+      console.log("トランスポーター検証成功: SMTPサーバーに接続できました")
+    } catch (verifyError) {
+      console.error("トランスポーター検証失敗:", verifyError)
+      return NextResponse.json(
+        {
+          success: false,
+          message: "メールサーバーに接続できません。しばらく経ってからもう一度お試しください。",
+          debug: `SMTP接続エラー: ${verifyError}`,
+        },
+        { status: 500 },
+      )
+    }
 
     // 管理者向けメール送信オプションを設定
     const adminMailOptions = {
-      from: process.env.GMAIL_USER,
-      to: process.env.GMAIL_RECIPIENT || process.env.GMAIL_USER, // 受信用メールアドレス
+      from: `"CAR CARE JAPAN" <${process.env.GMAIL_USER}>`,
+      to: process.env.GMAIL_RECIPIENT || process.env.GMAIL_USER,
       subject: `【お問い合わせ】${formData.subject}`,
       text: adminEmailBody,
-      replyTo: formData.email, // 返信先をお客様のメールアドレスに設定
+      replyTo: formData.email,
     }
 
     // 自動返信用のHTMLメール本文を作成
@@ -181,7 +219,7 @@ ${formData.message}
 </html>
     `
 
-    // 自動返信用のテキストメール本文（HTMLをサポートしていないメールクライアント用）
+    // 自動返信用のテキストメール本文
     const autoReplyTextBody = `
 お問い合わせありがとうございます
 
@@ -217,27 +255,27 @@ Email: info@carcarejapan.com
       from: `"CAR CARE JAPAN" <${process.env.GMAIL_USER}>`,
       to: formData.email,
       subject: `【CAR CARE JAPAN】お問い合わせありがとうございます`,
-      text: autoReplyTextBody, // プレーンテキスト版
-      html: autoReplyHtmlBody, // HTML版
+      text: autoReplyTextBody,
+      html: autoReplyHtmlBody,
     }
 
-    // 管理者向けメール送信
-    await transporter.sendMail(adminMailOptions)
+    // メール送信処理
+    console.log("管理者向けメール送信開始...")
+    try {
+      const adminInfo = await transporter.sendMail(adminMailOptions)
+      console.log("管理者向けメール送信成功:", adminInfo.messageId)
+    } catch (adminMailError) {
+      console.error("管理者向けメール送信失敗:", adminMailError)
+      // 管理者向けメールが失敗しても処理を続行
+    }
 
-    // 自動返信メール送信
-    await transporter.sendMail(autoReplyMailOptions)
-
-    // 開発環境ではコンソールに出力する部分も修正して、環境変数の値を確認できるようにします
-    // 開発環境ではコンソールに出力
-    if (process.env.NODE_ENV === "development") {
-      console.log("管理者向けメール内容:", adminEmailBody)
-      console.log("送信先:", process.env.GMAIL_RECIPIENT || process.env.GMAIL_USER)
-      console.log("自動返信メール送信先:", formData.email)
-      console.log("GMAIL_USER環境変数:", process.env.GMAIL_USER ? "設定されています" : "設定されていません")
-      console.log(
-        "GMAIL_APP_PASSWORD環境変数:",
-        process.env.GMAIL_APP_PASSWORD ? "設定されています" : "設定されていません",
-      )
+    console.log("自動返信メール送信開始...")
+    try {
+      const autoReplyInfo = await transporter.sendMail(autoReplyMailOptions)
+      console.log("自動返信メール送信成功:", autoReplyInfo.messageId)
+    } catch (autoReplyError) {
+      console.error("自動返信メール送信失敗:", autoReplyError)
+      // 自動返信メールが失敗しても処理を続行
     }
 
     // 成功レスポンスを返す
@@ -246,9 +284,13 @@ Email: info@carcarejapan.com
       message: "お問い合わせを受け付けました。自動返信メールをお送りしましたのでご確認ください。",
     })
   } catch (error) {
-    console.error("メール送信エラー:", error)
+    console.error("メール送信処理全体のエラー:", error)
     return NextResponse.json(
-      { success: false, message: "エラーが発生しました。もう一度お試しください。" },
+      {
+        success: false,
+        message: "エラーが発生しました。もう一度お試しください。",
+        debug: `エラー詳細: ${error}`,
+      },
       { status: 500 },
     )
   }
