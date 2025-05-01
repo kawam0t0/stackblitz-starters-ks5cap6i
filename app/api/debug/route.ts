@@ -16,9 +16,9 @@ export async function GET() {
       },
     }
 
-    // nodemailerのバージョン情報
+    // nodemailerのバージョン情報は取得できないのでスキップ
     const nodemailerInfo = {
-      version: nodemailer.version,
+      available: typeof nodemailer === "function",
     }
 
     // nodemailerのデフォルト設定を確認
@@ -44,9 +44,7 @@ export async function GET() {
     if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
       try {
         const gmailTransporter = nodemailer.createTransport({
-          host: "smtp.gmail.com",
-          port: 465,
-          secure: true,
+          service: "gmail", // hostとportの代わりにserviceを使用
           auth: {
             user: process.env.GMAIL_USER,
             pass: process.env.GMAIL_APP_PASSWORD,
