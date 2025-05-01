@@ -18,9 +18,9 @@ export async function POST(request: Request) {
 
     // 環境変数のデバッグ出力
     console.log("環境変数チェック:")
-    console.log("GMAIL_USER:", process.env.GMAIL_USER || "未設定")
+    console.log("GMAIL_USER:", process.env.GMAIL_USER ? "設定済み" : "未設定")
     console.log("GMAIL_APP_PASSWORD:", process.env.GMAIL_APP_PASSWORD ? "設定済み" : "未設定")
-    console.log("GMAIL_RECIPIENT:", process.env.GMAIL_RECIPIENT || "未設定")
+    console.log("GMAIL_RECIPIENT:", process.env.GMAIL_RECIPIENT ? "設定済み" : "未設定")
 
     // 環境変数が設定されていない場合はエラーを返す
     if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
@@ -29,7 +29,6 @@ export async function POST(request: Request) {
         {
           success: false,
           message: "サーバー設定エラー: メール送信に必要な設定が不足しています。管理者にお問い合わせください。",
-          debug: "環境変数 GMAIL_USER または GMAIL_APP_PASSWORD が設定されていません。",
         },
         { status: 500 },
       )
@@ -50,18 +49,13 @@ export async function POST(request: Request) {
 ${formData.message}
     `
 
-    // トランスポーターの設定を明示的に行う
-    console.log("トランスポーター設定開始...")
+    // トランスポーターの設定を明示的に行う - ここが重要
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true, // SSL
+      service: "gmail", // serviceを使用する方法に変更
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
-      debug: true, // デバッグモードを有効化
-      logger: true, // ロガーを有効化
     })
 
     // トランスポーターの検証
@@ -75,7 +69,6 @@ ${formData.message}
         {
           success: false,
           message: "メールサーバーに接続できません。しばらく経ってからもう一度お試しください。",
-          debug: `SMTP接続エラー: ${verifyError}`,
         },
         { status: 500 },
       )
@@ -289,7 +282,6 @@ Email: info@carcarejapan.com
       {
         success: false,
         message: "エラーが発生しました。もう一度お試しください。",
-        debug: `エラー詳細: ${error}`,
       },
       { status: 500 },
     )
