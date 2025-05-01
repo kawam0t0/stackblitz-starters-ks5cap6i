@@ -31,9 +31,12 @@ export async function POST(request: Request) {
 ${formData.message}
     `
 
+    // トランスポーターの設定部分を以下のように明示的に変更します
     // Gmailを使用したトランスポーターの設定
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, // SSL
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD, // Gmailのアプリパスワード
@@ -224,11 +227,17 @@ Email: info@carcarejapan.com
     // 自動返信メール送信
     await transporter.sendMail(autoReplyMailOptions)
 
+    // 開発環境ではコンソールに出力する部分も修正して、環境変数の値を確認できるようにします
     // 開発環境ではコンソールに出力
     if (process.env.NODE_ENV === "development") {
       console.log("管理者向けメール内容:", adminEmailBody)
       console.log("送信先:", process.env.GMAIL_RECIPIENT || process.env.GMAIL_USER)
       console.log("自動返信メール送信先:", formData.email)
+      console.log("GMAIL_USER環境変数:", process.env.GMAIL_USER ? "設定されています" : "設定されていません")
+      console.log(
+        "GMAIL_APP_PASSWORD環境変数:",
+        process.env.GMAIL_APP_PASSWORD ? "設定されています" : "設定されていません",
+      )
     }
 
     // 成功レスポンスを返す
