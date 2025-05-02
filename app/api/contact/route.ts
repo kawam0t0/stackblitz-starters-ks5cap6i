@@ -21,8 +21,9 @@ export async function POST(request: Request) {
     console.log("GMAIL_USER:", process.env.GMAIL_USER ? "設定済み" : "未設定")
     console.log("GMAIL_APP_PASSWORD:", process.env.GMAIL_APP_PASSWORD ? "設定済み" : "未設定")
     console.log("GMAIL_RECIPIENT:", process.env.GMAIL_RECIPIENT ? "設定済み" : "未設定")
-    console.log("SMTP_PORT:", process.env.SMTP_PORT || "未設定 (デフォルト: 587)")
-    console.log("SMTP_SECURE:", process.env.SMTP_SECURE || "未設定 (デフォルト: false)")
+    console.log("SMTP_HOST:", process.env.SMTP_HOST || "未設定 (デフォルト: smtp.gmail.com)")
+    console.log("SMTP_PORT:", process.env.SMTP_PORT || "未設定 (デフォルト: 465)")
+    console.log("SMTP_SECURE:", process.env.SMTP_SECURE || "未設定 (デフォルト: true)")
 
     // 環境変数が設定されていない場合はエラーを返す
     if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
@@ -51,19 +52,13 @@ export async function POST(request: Request) {
 ${formData.message}
     `
 
-    // SMTP設定を環境変数から取得（デフォルト値を設定）
-    const smtpPort = process.env.SMTP_PORT ? Number.parseInt(process.env.SMTP_PORT) : 587
-    const smtpSecure = process.env.SMTP_SECURE === "true"
-
-    console.log(`SMTP設定: ポート=${smtpPort}, セキュア=${smtpSecure}`)
-
-    // トランスポーターの設定 - 環境変数から設定を取得
+    // トランスポーターの設定 - 環境変数から設定を読み取る
     console.log("トランスポーター作成開始...")
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: smtpPort,
-      secure: smtpSecure, // 環境変数から取得
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port: Number.parseInt(process.env.SMTP_PORT || "465", 10),
+      secure: process.env.SMTP_SECURE === "true",
       auth: {
         user: process.env.GMAIL_USER?.trim(),
         pass: process.env.GMAIL_APP_PASSWORD?.trim(),
@@ -72,6 +67,11 @@ ${formData.message}
     })
 
     console.log("トランスポーター作成完了")
+    console.log("SMTP設定:", {
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port: Number.parseInt(process.env.SMTP_PORT || "465", 10),
+      secure: process.env.SMTP_SECURE === "true",
+    })
 
     // トランスポーターの検証
     console.log("トランスポーター検証開始...")

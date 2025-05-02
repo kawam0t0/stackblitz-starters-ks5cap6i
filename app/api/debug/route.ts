@@ -13,6 +13,9 @@ export async function GET() {
         GMAIL_USER: typeof process.env.GMAIL_USER === "string",
         GMAIL_APP_PASSWORD: typeof process.env.GMAIL_APP_PASSWORD === "string",
         GMAIL_RECIPIENT: typeof process.env.GMAIL_RECIPIENT === "string",
+        SMTP_HOST: process.env.SMTP_HOST || "未設定 (デフォルト: smtp.gmail.com)",
+        SMTP_PORT: process.env.SMTP_PORT || "未設定 (デフォルト: 465)",
+        SMTP_SECURE: process.env.SMTP_SECURE || "未設定 (デフォルト: true)",
       },
     }
 
@@ -20,6 +23,11 @@ export async function GET() {
     const nodemailerInfo = {
       available: typeof nodemailer === "function",
     }
+
+    // SMTP設定を環境変数から取得
+    const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com"
+    const smtpPort = Number.parseInt(process.env.SMTP_PORT || "465", 10)
+    const smtpSecure = process.env.SMTP_SECURE === "true"
 
     // nodemailerのデフォルト設定を確認
     let transporterConfig
@@ -43,11 +51,14 @@ export async function GET() {
     let gmailTest
     if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
       try {
+        // 環境変数から設定を取得してトランスポーターを作成
         const gmailTransporter = nodemailer.createTransport({
-          service: "gmail", // hostとportの代わりにserviceを使用
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpSecure,
           auth: {
-            user: process.env.GMAIL_USER,
-            pass: process.env.GMAIL_APP_PASSWORD,
+            user: process.env.GMAIL_USER.trim(),
+            pass: process.env.GMAIL_APP_PASSWORD.trim(),
           },
         })
 
@@ -57,12 +68,22 @@ export async function GET() {
           gmailTest = {
             success: true,
             message: "Gmailサーバーに正常に接続できました",
+            config: {
+              host: smtpHost,
+              port: smtpPort,
+              secure: smtpSecure,
+            },
           }
         } catch (verifyError: any) {
           gmailTest = {
             success: false,
             message: `Gmail接続検証エラー: ${verifyError.message}`,
             error: verifyError.toString(),
+            config: {
+              host: smtpHost,
+              port: smtpPort,
+              secure: smtpSecure,
+            },
           }
         }
       } catch (gmailError: any) {
