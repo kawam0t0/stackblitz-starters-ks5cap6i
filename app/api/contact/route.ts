@@ -49,17 +49,24 @@ export async function POST(request: Request) {
 ${formData.message}
     `
 
-    // トランスポーターの設定を明示的に行う - ここが重要
+    // トランスポーターの設定
+    console.log("トランスポーター作成開始...")
+    console.log("GMAIL_USER設定済み:", !!process.env.GMAIL_USER)
+    console.log("GMAIL_APP_PASSWORD設定済み:", !!process.env.GMAIL_APP_PASSWORD)
+
     const transporter = nodemailer.createTransport({
-      service: "gmail", // serviceを使用する方法に変更
+      service: "gmail",
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
+      debug: true, // デバッグモードを有効化
     })
 
+    console.log("トランスポーター作成完了")
+
     // トランスポーターの検証
-    console.log("トランスポーター検証中...")
+    console.log("トランスポーター検証開始...")
     try {
       await transporter.verify()
       console.log("トランスポーター検証成功: SMTPサーバーに接続できました")
@@ -259,6 +266,7 @@ Email: info@carcarejapan.com
       console.log("管理者向けメール送信成功:", adminInfo.messageId)
     } catch (adminMailError) {
       console.error("管理者向けメール送信失敗:", adminMailError)
+      console.error("エラー詳細:", adminMailError)
       // 管理者向けメールが失敗しても処理を続行
     }
 
@@ -268,6 +276,7 @@ Email: info@carcarejapan.com
       console.log("自動返信メール送信成功:", autoReplyInfo.messageId)
     } catch (autoReplyError) {
       console.error("自動返信メール送信失敗:", autoReplyError)
+      console.error("エラー詳細:", autoReplyError)
       // 自動返信メールが失敗しても処理を続行
     }
 
@@ -278,6 +287,7 @@ Email: info@carcarejapan.com
     })
   } catch (error) {
     console.error("メール送信処理全体のエラー:", error)
+    console.error("エラー詳細:", error)
     return NextResponse.json(
       {
         success: false,
