@@ -3,124 +3,107 @@ import nodemailer from "nodemailer"
 
 export async function GET() {
   try {
-    // システム情報の収集
-    const systemInfo = {
-      nodeVersion: process.version,
-      platform: process.platform,
-      env: process.env.NODE_ENV,
-      // 重要な環境変数の存在チェック（値は表示しない）
-      envVars: {
-        GMAIL_USER: typeof process.env.GMAIL_USER === "string",
-        GMAIL_APP_PASSWORD: typeof process.env.GMAIL_APP_PASSWORD === "string",
-        GMAIL_RECIPIENT: typeof process.env.GMAIL_RECIPIENT === "string",
-        SMTP_HOST: process.env.SMTP_HOST || "未設定 (デフォルト: smtp.gmail.com)",
-        SMTP_PORT: process.env.SMTP_PORT || "未設定 (デフォルト: 465)",
-        SMTP_SECURE: process.env.SMTP_SECURE || "未設定 (デフォルト: true)",
-      },
-    }
-
-    // nodemailerのバージョン情報は取得できないのでスキップ
-    const nodemailerInfo = {
-      available: typeof nodemailer === "function",
-    }
-
-    // SMTP設定を環境変数から取得
+    // 環境変数の取得（値の一部を安全に表示）
+    const gmailUser = process.env.GMAIL_USER || ""
+    const gmailPassword = process.env.GMAIL_APP_PASSWORD || ""
+    const gmailRecipient = process.env.GMAIL_RECIPIENT || ""
     const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com"
-    const smtpPort = Number.parseInt(process.env.SMTP_PORT || "465", 10)
-    const smtpSecure = process.env.SMTP_SECURE === "true"
+    const smtpPort = process.env.SMTP_PORT || "587"
+    const smtpSecure = process.env.SMTP_SECURE || "false"
 
-    // nodemailerのデフォルト設定を確認
-    let transporterConfig
+    // 環境変数の安全な表示（最初の3文字と最後の2文字のみ表示）
+    const safeDisplay = (str: string) => {
+      if (!str) return "未設定"
+      if (str.length <= 5) return "***" // 短すぎる場合は全て隠す
+      return `${str.substring(0, 3)}...${str.substring(str.length - 2)}`
+    }
+
+    // 環境変数の詳細情報
+    const envInfo = {
+      GMAIL_USER: {
+        value: safeDisplay(gmailUser),
+        length: gmailUser.length,
+        hasWhitespace: /\s/.test(gmailUser),
+        isEmpty: gmailUser.length === 0,
+      },
+      GMAIL_APP_PASSWORD: {
+        value: safeDisplay(gmailPassword),
+        length: gmailPassword.length,
+        hasWhitespace: /\s/.test(gmailPassword),
+        isEmpty: gmailPassword.length === 0,
+      },
+      GMAIL_RECIPIENT: {
+        value: safeDisplay(gmailRecipient),
+        length: gmailRecipient.length,
+        hasWhitespace: /\s/.test(gmailRecipient),
+        isEmpty: gmailRecipient.length === 0,
+      },
+      SMTP_HOST: smtpHost,
+      SMTP_PORT: smtpPort,
+      SMTP_SECURE: smtpSecure,
+    }
+
+    // SMTP接続テスト
+    let connectionTest = { success: false, message: "", details: null }
+    
     try {
-      // デフォルトのトランスポーター設定を試す（ホスト指定なし）
-      const testTransporter = nodemailer.createTransport({})
-      transporterConfig = {
-        success: false,
-        message: "デフォルトトランスポーターが作成されました（これは通常発生しないはずです）",
-        defaults: testTransporter.options,
-      }
-    } catch (configError: any) {
-      transporterConfig = {
-        success: false,
-        message: `デフォルトトランスポーター作成エラー: ${configError.message}`,
-        error: configError.toString(),
-      }
-    }
+      // トランスポーター設定
+      const transporter = nodemailer.createTransport({
+        host: smtpHost,
+        port: parseInt(smtpPort, 10),
+        secure: smtpSecure === "true",
+        auth: {
+          user: gmailUser,
+          pass: gmailPassword,
+        },
+        debug: true,
+        logger: true // 詳細なログを有効化
+      })
 
-    // Gmailトランスポーターのテスト
-    let gmailTest
-    if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
-      try {
-        // 環境変数から設定を取得してトランスポーターを作成
-        const gmailTransporter = nodemailer.createTransport({
-          host: smtpHost,
-          port: smtpPort,
-          secure: smtpSecure,
-          auth: {
-            user: process.env.GMAIL_USER.trim(),
-            pass: process.env.GMAIL_APP_PASSWORD.trim(),
-          },
-        })
-
-        // トランスポーターの検証（実際の接続テスト）
-        try {
-          await gmailTransporter.verify()
-          gmailTest = {
-            success: true,
-            message: "Gmailサーバーに正常に接続できました",
-            config: {
-              host: smtpHost,
-              port: smtpPort,
-              secure: smtpSecure,
-            },
-          }
-        } catch (verifyError: any) {
-          gmailTest = {
-            success: false,
-            message: `Gmail接続検証エラー: ${verifyError.message}`,
-            error: verifyError.toString(),
-            config: {
-              host: smtpHost,
-              port: smtpPort,
-              secure: smtpSecure,
-            },
-          }
-        }
-      } catch (gmailError: any) {
-        gmailTest = {
-          success: false,
-          message: `Gmailトランスポーター作成エラー: ${gmailError.message}`,
-          error: gmailError.toString(),
+      // 接続テスト
+      const verifyResult = await transporter.verify()
+      connectionTest = {
+        success: true,
+        message: "SMTP接続テスト成功",
+        details: verifyResult
+      }
+    } catch (error: any) {
+      connectionTest = {
+        success: false,
+        message: "SMTP接続テスト失敗",
+        details: {
+          name: error.name,
+          message: error.message,
+          code: error.code,
+          command: error.command,
+          response: error.response,
+          responseCode: error.responseCode,
+          stack: error.stack?.split("\n").slice(0, 3).join("\n")
         }
       }
-    } else {
-      gmailTest = {
-        success: false,
-        message: "Gmail環境変数が設定されていないため、テストをスキップしました",
-      }
     }
 
-    // nodemailerのモジュール解決パスを確認
-    let modulePaths
-    try {
-      modulePaths = {
-        nodemailer: require.resolve("nodemailer"),
-        // 他の関連モジュールも確認可能
-      }
-    } catch (pathError) {
-      modulePaths = {
-        error: "モジュールパスの解決に失敗しました",
-      }
+    // Gmail API情報
+    const gmailApiInfo = {
+      requiredScopes: ["https://mail.google.com/"],
+      authUrl: "https://myaccount.google.com/security",
+      appPasswordUrl: "https://myaccount.google.com/apppasswords",
+      twoFactorAuthUrl: "https://myaccount.google.com/signinoptions/two-step-verification"
     }
 
-    // 結果を返す
     return NextResponse.json({
       timestamp: new Date().toISOString(),
-      system: systemInfo,
-      nodemailer: nodemailerInfo,
-      transporterConfig,
-      gmailTest,
-      modulePaths,
+      environment: envInfo,
+      connectionTest,
+      gmailApiInfo,
+      recommendations: [
+        "Gmailアカウントで2段階認証が有効になっていることを確認してください",
+        "アプリパスワードが正確に入力されていることを確認してください",
+        "アプリパスワードを再生成してみてください",
+        "環境変数に余分な空白や改行がないことを確認してください",
+        "SMTPポート設定が正しいことを確認してください（587または465）",
+        "Gmailアカウントがロックされていないか確認してください"
+      ]
     })
   } catch (error: any) {
     return NextResponse.json(
@@ -128,8 +111,9 @@ export async function GET() {
         success: false,
         message: "デバッグ情報の収集中にエラーが発生しました",
         error: error.toString(),
+        stack: error.stack
       },
-      { status: 500 },
+      { status: 500 }
     )
   }
 }
