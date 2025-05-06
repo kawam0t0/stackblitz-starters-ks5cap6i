@@ -44,20 +44,23 @@ export async function GET() {
     }
 
     // SMTP接続テスト
-    let connectionTest = { success: false, message: "", details: null }
-    
+    let connectionTest: { success: boolean; message: string; details: any } = {
+      success: false,
+      message: "",
+      details: null,
+    }
+
     try {
       // トランスポーター設定
       const transporter = nodemailer.createTransport({
         host: smtpHost,
-        port: parseInt(smtpPort, 10),
+        port: Number.parseInt(smtpPort, 10),
         secure: smtpSecure === "true",
         auth: {
           user: gmailUser,
           pass: gmailPassword,
         },
         debug: true,
-        logger: true // 詳細なログを有効化
       })
 
       // 接続テスト
@@ -65,7 +68,7 @@ export async function GET() {
       connectionTest = {
         success: true,
         message: "SMTP接続テスト成功",
-        details: verifyResult
+        details: verifyResult || null,
       }
     } catch (error: any) {
       connectionTest = {
@@ -78,8 +81,8 @@ export async function GET() {
           command: error.command,
           response: error.response,
           responseCode: error.responseCode,
-          stack: error.stack?.split("\n").slice(0, 3).join("\n")
-        }
+          stack: error.stack?.split("\n").slice(0, 3).join("\n"),
+        },
       }
     }
 
@@ -88,7 +91,7 @@ export async function GET() {
       requiredScopes: ["https://mail.google.com/"],
       authUrl: "https://myaccount.google.com/security",
       appPasswordUrl: "https://myaccount.google.com/apppasswords",
-      twoFactorAuthUrl: "https://myaccount.google.com/signinoptions/two-step-verification"
+      twoFactorAuthUrl: "https://myaccount.google.com/signinoptions/two-step-verification",
     }
 
     return NextResponse.json({
@@ -102,8 +105,8 @@ export async function GET() {
         "アプリパスワードを再生成してみてください",
         "環境変数に余分な空白や改行がないことを確認してください",
         "SMTPポート設定が正しいことを確認してください（587または465）",
-        "Gmailアカウントがロックされていないか確認してください"
-      ]
+        "Gmailアカウントがロックされていないか確認してください",
+      ],
     })
   } catch (error: any) {
     return NextResponse.json(
@@ -111,9 +114,9 @@ export async function GET() {
         success: false,
         message: "デバッグ情報の収集中にエラーが発生しました",
         error: error.toString(),
-        stack: error.stack
+        stack: error.stack,
       },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }
